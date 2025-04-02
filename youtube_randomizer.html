@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random YouTube Redirect</title>
+    <meta charset="UTF-8">
+    <script>
+        function redirectToRandomVideo() {
+            // --- Your Playlist and Video IDs ---
+            const playlistId = 'PL2YkLc1T5uUeShSp9dmEG9bYE4b6TBlb7';
+            const videoIds = [
+                'BV7mKCgKhZY',
+                'C9IXUwqxIao',
+                'Z3O2r5K8e9A',
+                'MW4fASDkQXA',
+                'TSx1Tw9rAOs',
+                '5Un8M5ekjC0',
+                'mMU-o4hKDyo',
+                'wjTe0R2bREY',
+                'GCxBxwNYAqs',
+                'KZvM-qjT5i8'
+                // Add more video IDs here if your playlist grows,
+                // each in quotes and separated by a comma.
+            ];
+            // ------------------------------------
+
+            if (videoIds.length === 0) {
+                document.body.innerHTML = "Error: No video IDs found in the list.";
+                return;
+            }
+
+            // Pick a random index
+            const randomIndex = Math.floor(Math.random() * videoIds.length);
+            const randomVideoId = videoIds[randomIndex];
+
+            // Construct the YouTube URL
+            // Ensures playback starts within the context of the playlist
+            const youtubeUrl = `https://www.youtube.com/watch?v=${randomVideoId}&list=${playlistId}&index=${randomIndex + 1}`; // Adding index might help context
+
+            // Redirect the browser
+            window.location.replace(youtubeUrl);
+        }
+
+        // Run the redirect function as soon as the page loads
+        window.onload = redirectToRandomVideo;
+    </script>
+</head>
+<body>
+    <p>Redirecting to a random video from your playlist...</p>
+    <!-- You can add a fallback link in case JavaScript is disabled, although it won't be random -->
+    <noscript>
+        <p>JavaScript is required for the random redirect.</p>
+        <p><a href="https://www.youtube.com/playlist?list=PL2YkLc1T5uUeShSp9dmEG9bYE4b6TBlb7">Click here to view the playlist manually.</a></p>
+    </noscript>
+</body>
+</html>
